@@ -1,0 +1,21 @@
+.section__map{
+
+    margin-top: clamp(3.125rem, 0rem + 8.333vw, 7.5rem);
+}
+
+.section__map__contacts iframe  {
+    width: -webkit-fill-available;
+    border-radius: 15px;
+}
+
+.section__map iframe  {
+    width: -webkit-fill-available;
+    border-bottom-left-radius: 100px;
+    border-top-right-radius: 100px;
+}
+
+@media(max-width:425px) {
+    .section__map iframe {
+        height: 60vh;
+    }
+}

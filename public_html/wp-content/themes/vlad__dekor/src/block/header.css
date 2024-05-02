@@ -1,0 +1,40 @@
+.header__modal-wrapper.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+header {
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px) !important;
+}
+/* 
+.header-wrapper--search > .modal-content {
+    display: none;
+}
+
+.header-wrapper--search > .modal-content {
+    display: none;
+}
+
+
+.header-wrapper--favorite > .modal-content {
+    display: none;
+}
+
+
+.header-wrapper--lk > .modal-content {
+    display: none;
+}
+
+.header-wrapper--cart > .modal-content {
+    display: none;
+} */
+
+
+.modal-content {
+    display: none;
+}
+
+.header-wrapper.is-active .modal-content {
+    display: block;
+}

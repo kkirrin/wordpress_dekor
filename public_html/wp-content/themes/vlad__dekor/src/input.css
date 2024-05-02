@@ -1,0 +1,253 @@
+/* Импорт шрифтов */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+
+/* Импорт кастомных стилей для компонентов */
+@import './block/menu-button.css';
+@import './block/menu.css';
+@import './block/scrool-top.css';
+@import './block/popup.css';
+@import './block/animateSocialsBtn.css';
+@import './block/header.css';
+@import './block/popular.css';
+@import './block/new.css';
+@import './block/map.css';
+@import './block/sale.css';
+@import './block/about.css';
+@import './block/opt.css';
+@import './block/swiper__inner__custom.css';
+@import './block/best.css';
+@import './block/catalog.css';
+@import './block/navbar-mobile.css';
+
+/* Импорт TailWind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Зарегистрируйте пользовательское семейство шрифтов и сообщите браузеру, где его найти. */
+@font-face {
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 400;
+    src: (url('/src/fonts/NunitoSans_10pt-Regular.ttf'));
+}
+
+@font-face {
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 300;
+    src: (url('/src/fonts/NunitoSans_10pt-Light.ttf'));
+}
+
+@font-face {
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 500;
+    src: (url('/src/fonts/NunitoSans_10pt-Medium.ttf'));
+}
+
+@font-face {
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 600;
+    src: (url('/src/fonts/NunitoSans_10pt-SemiBold.ttf'));
+}
+
+@font-face {
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 700;
+    src: (url('/src/fonts/NunitoSans_10pt-Bold.ttf'));
+}
+
+@font-face {
+    font-family: 'vera';
+    src: url('../src/fonts/vera__crouz.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'playfire';
+    src: url('../src/fonts/PlayfairDisplay-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'playfire';
+    src: url('../src/fonts/PlayfairDisplay-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'playfire';
+    src: url('../src/fonts/PlayfairDisplay-SemiBold.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Nunito Sans', sans-serif;
+        color: #262626;
+        background: linear-gradient(166deg, #FFF 5.27%, rgba(255, 255, 255, 0.00) 78.75%);
+        font-weight: 300;
+    }
+
+    h2, h3 {
+        font-family: 'Nunito Sans';
+        /* line-height: 85px; */
+    }
+
+    span.counter-items,
+    span.counter-client,
+    span.counter-years {
+        font-family: 'Nunito Sans';
+    }
+}
+
+@layer components {
+    .container {
+        @apply max-w-[1440px]
+    }
+}
+
+/* Директивы классов */
+
+.main-item h2 {
+    font-size: clamp(2.188rem, -0.786rem + 10.595vw, 8.75rem);
+}
+
+
+.text-nunito {
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+/* Прочие классы */
+
+.lock {
+    overflow: hidden;
+}
+
+.vera__title::first-letter {
+    /* font-family: 'vera', sans-serif; */
+    /* font-size: 100px; */
+  }
+
+.text-playfire {
+    font-family: 'playfire', sans-serif;
+  }
+
+.text-vera {
+    font-family: 'vera', sans-serif;
+  }
+
+.footer {
+    margin-top: clamp(3.125rem, 0rem + 8.333vw, 7.5rem);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+.important {
+    background-image: url('../src/img/pattern-3.png');
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.slider__btns svg {
+    cursor: pointer;
+}
+
+.slider__btns .prev path, .slider__btns .next path {
+    cursor: pointer;
+    transition: transform .5s ease-in-out;
+}
+.slider__btns .prev:hover path{ 
+    transform: translateX(-10px);
+    width: 50px;
+}
+
+.slider__btns .next:hover path{ 
+    transform: translateX(10px);
+    width: 50px;
+}
+
+
+.custom-bullet {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #76212E;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+[data-scroll] {
+    transition: opacity 1s;
+}
+
+[data-scroll="in"] {
+    opacity: 1;
+}
+
+[data-scroll="out"] {
+    opacity: 0;
+}
+
+
+@media (max-width: 769px) {
+    .important {
+        background-image: none;
+    }
+    .present__img {
+        /* position: absolute;
+        left: 0;
+        bottom: 0; */
+    }
+}
+
+@media (max-width: 1023px) {
+    .hero-bg img {
+        display: none;
+    }
+}
+
+.header-fix {
+    /* background: rgba(20, 19, 19, 0.8); */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+    padding-bottom: 10px;
+}
+
+.title {
+    line-height: 85px !important;
+}

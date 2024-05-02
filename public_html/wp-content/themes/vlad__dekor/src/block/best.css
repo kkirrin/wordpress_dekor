@@ -1,0 +1,25 @@
+.best__card:hover  {
+    /* background-color: #292e25;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+}
+
+.best-items {
+    transition: all 1s ease-in-out;
+}
+
+
+
+.best-items .swiper-slide img {
+    transition: transform 0.5s ease-in-out;
+    object-fit: cover;
+    max-width: 400px;
+   
+}
+
+.best-items .swiper-slide:hover img {
+    transform: scale(1.1);
+}
+
+.section__best {
+    margin-top: clamp(3.125rem, 0rem + 7.333vw, 7.5rem);
+}

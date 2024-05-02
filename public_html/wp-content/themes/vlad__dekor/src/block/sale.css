@@ -1,0 +1,38 @@
+.section__sale {
+    background-color: #FCEDE5;
+    margin-top: clamp(3.125rem, 0rem + 7.333vw, 7.5rem);
+    padding: 20px;
+
+}
+
+.sale__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    
+}
+
+.sale__container--last {
+    grid-column-end: span 2
+}
+
+
+@media(max-width:1024px) {
+    .sale__container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        
+    }
+    .section__sale {
+        padding: 20px 0px;
+    }
+}
+
+@media(max-width:425px) {
+    .sale__container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        
+    }
+}
