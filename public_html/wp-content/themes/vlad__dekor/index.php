@@ -85,104 +85,50 @@
         <div class="container">
             <h2 class="vera__title text-3xl md:text-6xl py-5 font-normal wow fadeInUp" data-wow-duration="1s" data-wow-delay="0s">Популярные категории</h2>
             <div class="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-10">
-                <div class="popular__card rounded-md overflow-hidden relative z-0">
-                    <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_1.png" alt="текст">
-                    <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
-                        <p class="text-xs md:font-base font-semibold text-start">Упаковочный материал</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                    </div>
-                </div>
-
                 <?php
                     $args = array(
-                        'post_type' => 'product',
                         'taxonomy' => 'product_cat',
+                        'hide_empty' => false,
+                        'parent' => 0,
+                        'number' => 13,
                     );
+                    $terms = get_terms($args);
 
-                    print_r(get_terms( $args ));
+                    if ($terms && !is_wp_error($terms)):
+                        foreach ($terms as $term):
+                            $term_link = get_term_link($term);
+                            $term_thumb_url = get_woocommerce_term_meta($term->term_id, 'thumbnail_id', true);
+                            if (!empty($term_thumb_url)):
+                                echo '<a href="' . esc_url($term_link) . '">
+                                <div class="popular__card rounded-md overflow-hidden relative z-0">
 
-                    $query = new WP_Query($args)
+                                <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
+                                    <p class="text-xs md:font-base font-semibold text-start">' . esc_html($term->name) . '</p>
+                                    <img src="' . esc_url(get_template_directory_uri()) . '/src/img/icons/arrow.svg" alt="">
+                                </div>';
+
+                                if ($term_link) {
+                                    echo wp_get_attachment_image($term_thumb_url, 'large');
+                                }
+
+                                echo '</div></a>';
+                            endif;
+                        endforeach;
+                    else:
+                        echo '<p>Категорий не найдено.</p>';
+                    endif;
                 ?>
-
-                <!-- <div class="popular__card rounded-md overflow-hidden relative z-0">
-                    <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_2.png" alt="текст">
-                    <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
-                        <p class="text-xs md:font-base font-semibold text-start">Лента</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
+                <a href="/shop">
+                    <div class="popular__card rounded-md overflow-hidden relative z-0">
+                                <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_12.png" alt="текст">
+                                <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
+                                    <p class="text-xs md:font-base font-semibold text-start">Все категории</p>
+                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="popular__card rounded-md overflow-hidden relative z-0">
-                    <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_3.png" alt="текст">
-                    <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
-                        <p class="text-xs md:font-base font-semibold text-start">Коробки, кашпо и сумочки</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                    </div>
-                </div>
-                <div class="popular__card rounded-md overflow-hidden relative z-0">
-                    <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_4.png" alt="текст">
-                    <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
-                        <p class="text-xs md:font-base font-semibold text-start">Корзины, плетеные изделия</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                    </div>
-                </div>
-                <div class="popular__card rounded-md overflow-hidden relative z-0">
-                    <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_5.png" alt="текст">
-                    <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
-                        <p class="text-xs md:font-base font-semibold text-start">Октрытки и конверты</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                    </div>
-                </div>
-                <div class="popular__card rounded-md overflow-hidden relative z-0">
-                    <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_6.png" alt="текст">
-                    <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
-                        <p class="text-xs md:font-base font-semibold text-start">Сухоцветы и стабилизация</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                    </div>
-                </div>
-                <div class="popular__card rounded-md overflow-hidden relative z-0">
-                    <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_7.png" alt="текст">
-                    <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
-                        <p class="text-xs md:font-base font-semibold text-start">Расходные материалы</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                    </div>
-                </div>
-                <div class="popular__card rounded-md overflow-hidden relative z-0">
-                    <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_8.png" alt="текст">
-                    <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
-                        <p class="text-xs md:font-base font-semibold text-start">Инструменты</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                    </div>
-                </div>
-                <div class="popular__card rounded-md overflow-hidden relative z-0">
-                    <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_9.png" alt="текст">
-                    <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
-                        <p class="text-xs md:font-base font-semibold text-start">Сувениры</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                    </div>
-                </div>
-                <div class="popular__card rounded-md overflow-hidden relative z-0">
-                    <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_10.png" alt="текст">
-                    <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
-                        <p class="text-xs md:font-base font-semibold text-start">Ящики деревянные</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                    </div>
-                </div>
-                <div class="popular__card rounded-md overflow-hidden relative z-0">
-                    <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_11.png" alt="текст">
-                    <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
-                        <p class="text-xs md:font-base font-semibold text-start">Садовые товары</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                    </div>
-                </div>
-                <div class="popular__card rounded-md overflow-hidden relative z-0">
-                    <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/src/img/category/category_12.png" alt="текст">
-                    <div class="flex justify-center items-center gap-1 p-4 absolute z-10 bottom-0 text-center">
-                        <p class="text-xs md:font-base font-semibold text-start">Все категории</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                    </div>
-                </div> -->
-            </div>
-        </div>
+                </a>
     </section>
 
     <!-- Новинки -->
@@ -202,392 +148,150 @@
                         </svg>
                     </div>
                 </div>
+
                 <div class="new-items w-0 min-w-[100%] overflow-hidden">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide w-auto rounded-md overflow-hidden">
-                            <div class="relative new__card flex flex-col justify-between">
-                                <div class="slider-container__inner__inner">
-                                    <div class="slider overflow-hidden w-auto">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_1.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_2.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_3.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_4.png">
-                                    </div>
-                                    
-                                    <button class="custom-bullet custom-bullet--prev z-100"></button>
-                                    <button class="custom-bullet custom-bullet--next z-100"></button>
-                                    
-                                </div>
-                                <button class="absolute right-2 top-2 z-20">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/favorite.svg">
-                                </button>
-                                    
-                            </div>
-                            <div class="flex flex-col gap-1 pt-3">
-                                <div class="flex gap-2">
-                                    <p class="font-base font-extrabold">Набор белого хлопка «Сливочные облака», 10 шт </p>
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                                </div>
-                                <p>Описание: хлопок, высота 40см, 10шт</p>
-                                <p>Артикул: 6666666</p>
+                        <?php
+                            $args = array(
 
-                                <p class="pt-5">Цвет</p>
-                                <div class="inputs-wrapper flex gap-2 py-4">
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                </div>
-                            </div>
+                                'post_type' => 'product',
+                                'posts_per_page' => -1,
+                                'product_cat' => 'новинка',
+                            );
 
+                            $query = new WP_Query($args);
 
-                                
-                                <div class="flex gap-2 justify-between items-center flex-wrap">
-                                    <div class="flex gap-1 pt-3">
-                                        <span class="font-extrabold">666р /</span>  шт
-                                    </div> 
+                            if ($query->have_posts()) {
+
+                                while ($query->have_posts()) {
+                                    $query->the_post();
+
+                                    $terms = get_the_terms($post->ID, 'product_cat');
+
+                                    $product = wc_get_product(get_the_ID());
                                     
-                                    <div class="flex gap-2 justify-center items-center order-1 md:-order-1">
-                                        <div class="border border-gray rounded-md py-3 px-5">
-                                            <button class="font-extrabold pr-2">
-                                                -
-                                            </button>
-                                            1
-                                            <button class="font-extrabold pl-2">
-                                                +
-                                            </button>
-                                            
-                                        </div>
+                                    
+                                    $product_name = $product->get_name();
+                                    $product_id = get_the_ID();
+                                    $product_sku = $product->get_sku();
+                                    $product_image = wp_get_attachment_url($product->get_image_id());
+                                    $product_gallery = $product->get_gallery_image_ids();
+                                    $product_price = $product->get_price();
+                                    $product_variations = $product->get_available_variations();
+
+                                                             
+                                    $id = $product->get_id();
+                                    $product_link = $product->get_permalink();
+                                    $product_color = $product->get_meta('color');
+                                    
+                                    
+                                    echo '      <div class="swiper-slide w-auto rounded-md overflow-hidden">';
+                                    echo '          <div class="relative new__card flex flex-col justify-between">';
+                                    echo '              <div class="slider-container__inner__inner">';
+                                    echo '                  <div class="slider overflow-hidden w-auto">';
+                                                                foreach ( $product_gallery as $product_slide ) {
+                                                                    $full_src = wp_get_attachment_image_src( $product_slide, 'full' );
+                                                                    echo ' <img  class="rounded-md object-fill" style="max-height: 350px; width: -webkit-fill-available;" src="'.$full_src[0] .'">'; 
+                                                                }
+                                    echo '                   </div>';
+                                    
+                                    echo '                  <button class="custom-bullet custom-bullet--prev z-100"></button>';
+                                    echo '                  <button class="custom-bullet custom-bullet--next z-100"></button>';
+                                    echo '               </div>';
+                                    echo '              <button class="absolute right-2 top-2 z-20">';
+                                    echo '                  <img src="' . esc_url(get_template_directory_uri()) . '/src/img/icons/favorite.svg">';
+                                    echo '              </button>';
+                                    echo '          </div>';
+
+                                    echo '          <div class="flex flex-col gap-1 pt-3">';
+                                    echo '              <div class="flex gap-2">';
+                                    echo '                  <p class="font-base font-extrabold">'. $product_name .' </p>';
+                                    echo '                      <img src="' . esc_url(get_template_directory_uri()) . '/src/img/icons/arrow.svg" alt="">';
+                                    echo '               </div>';
+
+                                                        foreach ( $product_variations as $variation ) {                        
+                                                            echo '<p>'. $variation['variation_description'] .'</p>';
+                                                        }
+
+                                    echo '              <p>'. $product_sku .'</p>';
+                                    echo '              <p class="pt-5">'. $product_color .'</p>';
+
+                                    if ($product->is_type('variable')) {
+                                        $attributes = $product->get_variation_attributes();
+                                        $available_variations = $product->get_available_variations();
+    
+                                        foreach ($attributes as $attribute_name => $options) {
+    
+                                            // Выводим радио-кнопки для каждого атрибута
+                                            echo '<div class="woocommerce-variation single_variation">';
+                                            echo '<fieldset>';
+                                            echo '<legend> Выберите ' . wc_attribute_label($attribute_name) . ' </legend>';
+    
+    
+                                            // Переменная для определения первой итерации цикла
+                                            $is_first_option = true;
+    
+                                            $unique_suffix = $product->get_id();
+    
+                                            echo '<div class="inputs-wrapper">';
+                                            foreach ($options as $option) {
+    
+                                                $checked = $is_first_option ? 'checked' : ''; 
+    
+                                                $option_slug = sanitize_title($option);
+    
+    
+                                                echo '<label class="' . $checked . ' ' . $attribute_name . '-label"
+                                                style="background-color: #' . esc_attr($option_slug) . ';"
+                                                >';
+                                                echo '<input class="' . $attribute_name . '-input" type="radio" name="attribute_' . sanitize_title($attribute_name) . '" 
+                                                        id="' . esc_attr($option_slug) . '" value="' . esc_attr($option) . '" ' . $checked . '>' .
+                                                    esc_html(apply_filters('woocommerce_variation_option_name', $option));
+                                                echo '</label>';
+    
+                                                $is_first_option = false;
+                                            }
+    
+                                            echo '</div>';
+                                            echo '</fieldset>';
+                                            echo '</div>';
+                                        }
+                                        // Добавляем скрытое поле, необходимое для вариативных товаров
+                                        echo '<input type="hidden" name="product_id" value="' . esc_attr($product->get_id()) . '" />';
+                                        echo '<input type="hidden" name="variation_id" class="variation_id" value="" />';
+                                    }
+                                    
+                                    echo '              <div class="inputs-wrapper flex gap-2 py-4">';
+                                    echo '                   <label class="" style=""></label>';
+                                    echo '                   <label class="" style=""></label>';
+                                    echo '                   <label class="" style=""></label>';
+                                    echo '              </div>';
+                                    echo '           </div>';
+                                    echo '          <div class="flex gap-2 justify-between items-center flex-wrap">
+                                                        <div class="flex gap-1 pt-3">
+                                                            <span class="font-extrabold">';
+                                                               foreach ( $product_variations as $variation ) {                        
+                                                                echo '<p>'. $variation['price_html'] .'</p>';
+                                                            }
+                                    echo'
+                                                        </div> 
                                         
-                                        <button class="bg-red p-3 rounded-md">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/cart__white.svg">
-                                        </button>
-                                    </div>
+                                                        <div class="flex gap-2 justify-center items-center order-1 md:-order-1">
+                                                            <div class="quantity buttons_added border border-gray rounded-md py-3 px-5">
+                                                                <input type="button" value="-" class="minus cursor-pointer">
+                                                                    <input type="number" id="quantity_65c1b90451f5a" class="input-text qty text" style="width: 60px;" name="quantity" value="1" aria-label="Количество товара" size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off">
+                                                                <input type="button" value="+" class="plus cursor-pointer">
+                                                        </div>';
 
-                                </div>
-                                
-
-                            
-                        </div> 
-                        <div class="swiper-slide w-auto rounded-md overflow-hidden">
-                            <div class="relative new__card flex flex-col justify-between">
-                                <div class="slider-container__inner__inner">
-                                    <div class="slider overflow-hidden w-auto">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_1.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_2.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_3.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_4.png">
-                                    </div>
-                                    
-                                    <button class="custom-bullet custom-bullet--prev z-100"></button>
-                                    <button class="custom-bullet custom-bullet--next z-100"></button>
-                                    
-                                </div>
-                                <button class="absolute right-2 top-2 z-20">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/favorite.svg">
-                                </button>
-                                    
-                            </div>
-                            <div class="flex flex-col gap-1 pt-3">
-                                <div class="flex gap-2">
-                                    <p class="font-base font-extrabold">Набор белого хлопка «Сливочные облака», 10 шт </p>
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                                </div>
-                                <p>Описание: хлопок, высота 40см, 10шт</p>
-                                <p>Артикул: 6666666</p>
-
-                                <p class="pt-5">Цвет</p>
-                                <div class="inputs-wrapper flex gap-2 py-4">
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                </div>
-                            </div>
-
-
-                                
-                                <div class="flex gap-2 justify-between items-center flex-wrap">
-                                    <div class="flex gap-1 pt-3">
-                                        <span class="font-extrabold">666р /</span>  шт
-                                    </div> 
-                                    
-                                    <div class="flex gap-2 justify-center items-center order-1 md:-order-1">
-                                        <div class="border border-gray rounded-md py-3 px-5">
-                                            <button class="font-extrabold pr-2">
-                                                -
-                                            </button>
-                                            1
-                                            <button class="font-extrabold pl-2">
-                                                +
-                                            </button>
-                                            
-                                        </div>
-                                        
-                                        <button class="bg-red p-3 rounded-md">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/cart__white.svg">
-                                        </button>
-                                    </div>
-
-                                </div>
-                                
-
-                            
-                        </div> 
-                        <div class="swiper-slide w-auto rounded-md overflow-hidden">
-                            <div class="relative new__card flex flex-col justify-between">
-                                <div class="slider-container__inner__inner">
-                                    <div class="slider overflow-hidden w-auto">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_1.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_2.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_3.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_4.png">
-                                    </div>
-                                    
-                                    <button class="custom-bullet custom-bullet--prev z-100"></button>
-                                    <button class="custom-bullet custom-bullet--next z-100"></button>
-                                    
-                                </div>
-                                <button class="absolute right-2 top-2 z-20">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/favorite.svg">
-                                </button>
-                                    
-                            </div>
-                            <div class="flex flex-col gap-1 pt-3">
-                                <div class="flex gap-2">
-                                    <p class="font-base font-extrabold">Набор белого хлопка «Сливочные облака», 10 шт </p>
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                                </div>
-                                <p>Описание: хлопок, высота 40см, 10шт</p>
-                                <p>Артикул: 6666666</p>
-
-                                <p class="pt-5">Цвет</p>
-                                <div class="inputs-wrapper flex gap-2 py-4">
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                </div>
-                            </div>
-
-
-                                
-                                <div class="flex gap-2 justify-between items-center flex-wrap">
-                                    <div class="flex gap-1 pt-3">
-                                        <span class="font-extrabold">666р /</span>  шт
-                                    </div> 
-                                    
-                                    <div class="flex gap-2 justify-center items-center order-1 md:-order-1">
-                                        <div class="border border-gray rounded-md py-3 px-5">
-                                            <button class="font-extrabold pr-2">
-                                                -
-                                            </button>
-                                            1
-                                            <button class="font-extrabold pl-2">
-                                                +
-                                            </button>
-                                            
-                                        </div>
-                                        
-                                        <button class="bg-red p-3 rounded-md">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/cart__white.svg">
-                                        </button>
-                                    </div>
-
-                                </div>
-                                
-
-                            
-                        </div> 
-                        <div class="swiper-slide w-auto rounded-md overflow-hidden">
-                            <div class="relative new__card flex flex-col justify-between">
-                                <div class="slider-container__inner__inner">
-                                    <div class="slider overflow-hidden w-auto">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_1.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_2.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_3.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_4.png">
-                                    </div>
-                                    
-                                    <button class="custom-bullet custom-bullet--prev z-100"></button>
-                                    <button class="custom-bullet custom-bullet--next z-100"></button>
-                                    
-                                </div>
-                                <button class="absolute right-2 top-2 z-20">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/favorite.svg">
-                                </button>
-                                    
-                            </div>
-                            <div class="flex flex-col gap-1 pt-3">
-                                <div class="flex gap-2">
-                                    <p class="font-base font-extrabold">Набор белого хлопка «Сливочные облака», 10 шт </p>
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                                </div>
-                                <p>Описание: хлопок, высота 40см, 10шт</p>
-                                <p>Артикул: 6666666</p>
-
-                                <p class="pt-5">Цвет</p>
-                                <div class="inputs-wrapper flex gap-2 py-4">
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                </div>
-                            </div>
-
-
-                                
-                                <div class="flex gap-2 justify-between items-center flex-wrap">
-                                    <div class="flex gap-1 pt-3">
-                                        <span class="font-extrabold">666р /</span>  шт
-                                    </div> 
-                                    
-                                    <div class="flex gap-2 justify-center items-center order-1 md:-order-1">
-                                        <div class="border border-gray rounded-md py-3 px-5">
-                                            <button class="font-extrabold pr-2">
-                                                -
-                                            </button>
-                                            1
-                                            <button class="font-extrabold pl-2">
-                                                +
-                                            </button>
-                                            
-                                        </div>
-                                        
-                                        <button class="bg-red p-3 rounded-md">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/cart__white.svg">
-                                        </button>
-                                    </div>
-
-                                </div>
-                                
-
-                            
-                        </div> 
-                        <div class="swiper-slide w-auto rounded-md overflow-hidden">
-                            <div class="relative new__card flex flex-col justify-between">
-                                <div class="slider-container__inner__inner">
-                                    <div class="slider overflow-hidden w-auto">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_1.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_2.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_3.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_4.png">
-                                    </div>
-                                    
-                                    <button class="custom-bullet custom-bullet--prev z-100"></button>
-                                    <button class="custom-bullet custom-bullet--next z-100"></button>
-                                    
-                                </div>
-                                <button class="absolute right-2 top-2 z-20">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/favorite.svg">
-                                </button>
-                                    
-                            </div>
-                            <div class="flex flex-col gap-1 pt-3">
-                                <div class="flex gap-2">
-                                    <p class="font-base font-extrabold">Набор белого хлопка «Сливочные облака», 10 шт </p>
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                                </div>
-                                <p>Описание: хлопок, высота 40см, 10шт</p>
-                                <p>Артикул: 6666666</p>
-
-                                <p class="pt-5">Цвет</p>
-                                <div class="inputs-wrapper flex gap-2 py-4">
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                </div>
-                            </div>
-
-
-                                
-                                <div class="flex gap-2 justify-between items-center flex-wrap">
-                                    <div class="flex gap-1 pt-3">
-                                        <span class="font-extrabold">666р /</span>  шт
-                                    </div> 
-                                    
-                                    <div class="flex gap-2 justify-center items-center order-1 md:-order-1">
-                                        <div class="border border-gray rounded-md py-3 px-5">
-                                            <button class="font-extrabold pr-2">
-                                                -
-                                            </button>
-                                            1
-                                            <button class="font-extrabold pl-2">
-                                                +
-                                            </button>
-                                            
-                                        </div>
-                                        
-                                        <button class="bg-red p-3 rounded-md">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/cart__white.svg">
-                                        </button>
-                                    </div>
-
-                                </div>
-                                
-
-                            
-                        </div> 
-                        <div class="swiper-slide w-auto rounded-md overflow-hidden">
-                            <div class="relative new__card flex flex-col justify-between">
-                                <div class="slider-container__inner__inner">
-                                    <div class="slider overflow-hidden w-auto">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_1.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_2.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_3.png">
-                                        <img class="rounded-md" style="width: -webkit-fill-available;" src="<?php echo get_template_directory_uri(); ?>/src/img/new/new_4.png">
-                                    </div>
-                                    
-                                    <button class="custom-bullet custom-bullet--prev z-100"></button>
-                                    <button class="custom-bullet custom-bullet--next z-100"></button>
-                                    
-                                </div>
-                                <button class="absolute right-2 top-2 z-20">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/favorite.svg">
-                                </button>
-                                    
-                            </div>
-                            <div class="flex flex-col gap-1 pt-3">
-                                <div class="flex gap-2">
-                                    <p class="font-base font-extrabold">Набор белого хлопка «Сливочные облака», 10 шт </p>
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/arrow.svg" alt="">
-                                </div>
-                                <p>Описание: хлопок, высота 40см, 10шт</p>
-                                <p>Артикул: 6666666</p>
-
-                                <p class="pt-5">Цвет</p>
-                                <div class="inputs-wrapper flex gap-2 py-4">
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                    <label class="" style="background-color: url('/src/img/main/thumb.png')"><img src="<?php echo get_template_directory_uri(); ?>/src/img/main/thumb.png"></label>
-                                </div>
-                            </div>
-
-
-                                
-                                <div class="flex gap-2 justify-between items-center flex-wrap">
-                                    <div class="flex gap-1 pt-3">
-                                        <span class="font-extrabold">666р /</span>  шт
-                                    </div> 
-                                    
-                                    <div class="flex gap-2 justify-center items-center order-1 md:-order-1">
-                                        <div class="border border-gray rounded-md py-3 px-5">
-                                            <button class="font-extrabold pr-2">
-                                                -
-                                            </button>
-                                            1
-                                            <button class="font-extrabold pl-2">
-                                                +
-                                            </button>
-                                            
-                                        </div>
-                                        
-                                        <button class="bg-red p-3 rounded-md">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/cart__white.svg">
-                                        </button>
-                                    </div>
-
-                                </div>
-                                
-
-                            
-                        </div> 
+                                                        echo '<a href="?add-to-cart=' . $product_id . '" class="bg-red p-3 rounded-md card__to-card button button product_type_simple add_to_cart_button ajax_add_to_cart" data-quantity="1" data-product_id="' . $product_id . '" data-product_sku="' . $product->get_sku() . '" aria-label="' . __('Добавить в корзину', 'domain') . '" rel="nofollow"> 
+                                                            <img src="' . esc_url(get_template_directory_uri()) . '/src/img/icons/cart__white.svg">
+                                                        </a>    
+                                                        </div
+                                                    </div>
+                                                </div>';     
+                                    echo '</div>';
+                                }};
+                            ?>
                     </div>
                 </div>
             </div>

@@ -54,7 +54,7 @@ do_action('woocommerce_before_main_content');
 	</header>
 	<div class="flex">
 		<!-- Тут меню будет -->
-		<aside class="w-full esm:w-full sm:w-full md:w-1/6 hidden esm:hidden sm:hover: md:block mr-5 h-screen bg-gray-200">
+		<aside class="w-full esm:w-full sm:w-full md:w-1/6 hidden esm:hidden sm:hover: md:block mr-5 h-screen bg-gray-200 ">
 				<div>
 					<nav class="catalog-menu">
 						<?php wp_nav_menu([
@@ -82,7 +82,7 @@ do_action('woocommerce_before_main_content');
 		<!-- Кончилось -->
 
 
-		<div class="w-full esm:full sm:w-full md:w-3/4 pb-10 relative">
+		<div class="w-full esm:full sm:w-full md:w-3/4 pb-10 relative catalog">
 			<div class="flex justify-between pb-10 ">
 				<button
 					class="text-bg-black font-bold btn_menu_filter block esm:block sm:block md:hidden">Показать
@@ -115,6 +115,9 @@ do_action('woocommerce_before_main_content');
 						<?php echo do_shortcode('[wpf-filters id=2]') ?>
 					</div>
 				</div>
+				
+				<div class="catalog__items">
+
 				
 				<?php
 					if (woocommerce_product_loop()) {
@@ -174,6 +177,7 @@ do_action('woocommerce_before_main_content');
 					 */
 					do_action('woocommerce_sidebar');
 				?>
+				</div>
 			
 				
 	</div>
