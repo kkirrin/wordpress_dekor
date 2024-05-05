@@ -7,6 +7,7 @@
 <?php get_header('second'); ?>
 
     <main>
+        тест
         <h1 class="visually-hidden">Скрытый заголовок</h1>
         <section class="pt-20 md:pt-32">
             <div class="container">
