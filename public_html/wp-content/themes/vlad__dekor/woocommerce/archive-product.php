@@ -31,8 +31,6 @@ do_action('woocommerce_before_main_content');
 ?>
 
 
-
-
 <div class="container" style="padding-top: 150px;">
 	<h2 class="text-bg-black text-2xl esm:text-2xl sm:text-3xl md:text-5xl py-4 esm:py-4 sm:py-4 md:py-5 font-extrabold"> Каталог</h2> 
 	<header class="woocommerce-products-header">

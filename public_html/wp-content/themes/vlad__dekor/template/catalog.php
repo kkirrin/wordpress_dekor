@@ -1,6 +1,6 @@
 <?php 
     /*
-    Template Name: Каталог
+    Template Name: страница шаблон - Каталог 
     */
 ?>
 
@@ -15,7 +15,8 @@
                         <li class="breadcrumb__item text-bg-black opacity-60 ">
                             <a href="/">
                                 Главная
-                            </a></li>
+                            </a>
+                        </li>
                         <li class="opacity-60 text-bg-black">
                             /
                         </li>
