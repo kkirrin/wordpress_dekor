@@ -13,6 +13,7 @@ export const initNavMobile = () => {
 
     sub__menu.forEach((el) => {
         el.addEventListener('click', (event) => {
+            event.preventDefault()
             const subMenu = el.querySelector('ul');
             const currentButton = event.currentTarget
 

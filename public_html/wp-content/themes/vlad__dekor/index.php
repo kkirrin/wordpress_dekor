@@ -14,7 +14,9 @@
         <div class="main-wrapper overflow-hidden relative ">
 
             <div class="absolute z-[3] top-20 items-center justify-center w-full p-5 flex sm:flex md:hidden">
-                <input class="w-full p-5 rounded-md" type="text">
+                <div class="search__mobile">
+                    <?php get_search_form(); ?>
+                </div>
                 <img class="absolute right-0 mr-10" src="<?php echo get_template_directory_uri(); ?><?php echo get_template_directory_uri(); ?>/src/img/icons/search.svg" alt="">
             </div>
             

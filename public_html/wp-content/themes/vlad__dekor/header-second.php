@@ -127,9 +127,7 @@
                                 <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/search.svg"
                                     width="20" height="20" alt="cart">
                                 <div class="modal-content">
-                                    <label for="search" >Поиск по товаровам</label>
-                                    <input type="search">
-                                    <button>Найти</button>
+                                    <?php get_search_form(); ?>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +136,9 @@
                                 <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/cart.svg"
                                     width="20" height="20" alt="cart">
                                 <div class="modal-content">
-                                    Корзина
+                                <div class="mini-card">
+                                        <?php the_widget('WC_Widget_Cart', 'title=') ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

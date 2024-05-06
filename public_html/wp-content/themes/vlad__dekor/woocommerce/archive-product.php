@@ -17,7 +17,7 @@
 
 defined('ABSPATH') || exit;
 
-get_header('shop');
+get_header('second');
 
 /**
  * Hook: woocommerce_before_main_content.
@@ -31,7 +31,7 @@ do_action('woocommerce_before_main_content');
 ?>
 
 
-<div class="container" style="padding-top: 150px;">
+<div class="container">
 	<h2 class="text-bg-black text-2xl esm:text-2xl sm:text-3xl md:text-5xl py-4 esm:py-4 sm:py-4 md:py-5 font-extrabold"> Каталог</h2> 
 	<header class="woocommerce-products-header">
 		<?php if (apply_filters('woocommerce_show_page_title', true)): ?>
@@ -47,7 +47,7 @@ do_action('woocommerce_before_main_content');
 		 * @hooked woocommerce_taxonomy_archive_description - 10
 		 * @hooked woocommerce_product_archive_description - 10
 		 */
-		do_action('woocommerce_archive_description');
+	do_action('woocommerce_archive_description');
 		?>
 	</header>
 	<div class="flex">
@@ -80,7 +80,7 @@ do_action('woocommerce_before_main_content');
 		<!-- Кончилось -->
 
 
-		<div class="w-full esm:full sm:w-full md:w-3/4 pb-10 relative catalog">
+		<div class="w-full esm:full sm:w-full md:w-3/4 relative catalog">
 			<div class="flex justify-between pb-10 ">
 				<button
 					class="text-bg-black font-bold btn_menu_filter block esm:block sm:block md:hidden">Показать

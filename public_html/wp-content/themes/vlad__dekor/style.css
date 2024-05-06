@@ -3059,3 +3059,131 @@ span.ui-slider-handle.ui-corner-all.ui-state-default {
 .variable-item-image img {
   object-fit: cover;
 }
+
+
+.search__mobile input[type="text"] {
+  height: 50px !important;
+  border-radius: 5px !important;;
+  padding: 5px;
+  width: -webkit-fill-available !important;
+}
+.search__mobile input[type="text"]::before {
+  content: "";
+  background-color: #1fc14b;
+  width: 1px;
+  height: 1px;
+  background-image: url();
+  background-size: cover;
+}
+
+.search__mobile input#searchsubmit {
+  display: none !important;
+
+}
+
+.search__mobile {
+  width:  -webkit-fill-available !important;
+  position: relative !important;
+}
+
+.search__mobile::before {
+  content: "";
+  background-color: #1fc14b;
+  background-image: url('https://vlad-dekor.ru/wordpress_dekor/public_html/wp-content/themes/vlad__dekor/src/img/icons/search.svg');
+  display: block;
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  right: 24px;
+}
+
+#primary {
+  padding-top: clamp(6.25rem, 4.018rem + 5.952vw, 9.375rem);
+}
+
+.modal-content {
+  min-width: 850px;
+  /* height: 570px; */
+  position: fixed;
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #FCEDE5;
+  padding: 24px;
+  z-index: 101;
+}
+
+@media (max-width: 940px) {
+  .modal-content {
+    min-width: auto;
+    width: 700px;
+  }
+}
+
+@media (max-width: 780px) {
+  .modal-content {
+    width: 530px;
+  }
+}
+
+@media (max-width: 590px) {
+  .modal-content {
+    width: 370px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .modal-content {
+    width: 300px;
+  }
+}
+
+.modal-content input[type="text"] {
+  width: 100%;
+  border: none;
+  /* background: rgba(255, 255, 255, 0.06); */
+  height: 48px;
+  padding-left: 20px;
+  overflow: hidden;
+  /* color: rgba(255, 255, 255, 0.90); */
+  /* padding-top: 18px; */
+}
+
+
+
+.modal-content input#searchsubmit {
+
+  position: absolute;
+  top: 35px;
+  right: 30px;
+  pointer-events: none;
+  transition: top .2s ease-in-out, font-size .2s ease-in-out, color .2s ease-in-out;
+}
+
+@media(max-width:480px) {
+  .modal-content input#searchsubmit {
+  
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    pointer-events: none;
+    transition: top .2s ease-in-out, font-size .2s ease-in-out, color .2s ease-in-out;
+  }
+}
+
+
+ul.variations .woo-variation-items-wrapper ul{
+  display: contents !important;
+}
+
+ul.variations .woo-variation-items-wrapper ul.archive-variable-items > li {
+  width: 70px !important;
+  height: 70px !important;
+}
+
+
+
+ul.variations .woo-variation-items-wrapper ul .variable-item-contents .variable-item-image{
+  object-fit: cover;
+}
