@@ -18,6 +18,8 @@ import { initNavMobile } from "./module/nav-mobile.js";
 window.addEventListener('DOMContentLoaded', () => {
     console.log('подключен скрипт main.js');
 
+
+
     initNav();
     initScroll();
     baguetteBox.run('.gallery-wrapper');
@@ -34,20 +36,6 @@ window.addEventListener('DOMContentLoaded', () => {
     initScrollAnimation();
     initNavMobile();
 
-
-    // функция для получения ширины размера устройтва
-    function getViewportWidth() {
-        return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    }
-    // функция для получения высоты экрана
-    function getViewportHeight() {
-        return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    }
-    // функция для получения ширины окна браузера
-    function getWindowWidth() {
-        return window.innerWidth;
-    }
-
     if(window.innerWidth >= 769) {
         var image = document.querySelectorAll('.parallax__img__first');
         new simpleParallax(image, {
@@ -61,6 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
             transition: 'cubic-bezier(10,0,0, 1)'
         });
     }
+
 
 
 });

@@ -145,12 +145,9 @@
                             </div>
                         </div>
                         <div class="relative hidden xs:hidden sm:hidden md:block">
-                            <a class="header-wrapper header-wrapper--search" href="https://">
+                            <a href="/favorite">
                                 <img src="<?php echo get_template_directory_uri(); ?>/src/img/icons/favorite.svg"
                                     width="20" height="20" alt="cart">
-                                <div class="modal-content">
-                                    <span>Любимые&nbsp;товары</span>
-                                </div>
                             </a>
                         </div>
 

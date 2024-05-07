@@ -31,6 +31,11 @@
         require_once (get_template_directory() . '/woocommerce-functions/minicard.php');
     }
 
+    // Подключение функций "отображение избранных товаров" корзины
+    if (class_exists('WooCommerce')) {
+        require_once (get_template_directory() . '/woocommerce-functions/get-favorite.php');
+    }
+
     // удаляет сайдбар со страниц
     add_action('wp', 'bbloomer_remove_sidebar_product_pages');
 

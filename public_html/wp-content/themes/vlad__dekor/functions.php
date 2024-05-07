@@ -47,47 +47,20 @@ function add_menu()
 }
 
 
-// функция для добавления класса для li 
-
-// class Walker_Nav_Menu_Submenu extends Walker_Nav_Menu {
-//     function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
-//         $output .= '<li class="sub-menu">';
-//         // $output .= '<a href="' . $item->url . '">' . $item->title . '</a>';
-//         $output .= '</li>';
-//     }
-// }
-
-// add_filter( 'wp_nav_menu_args', 'my_custom_nav_menu_args' );
-
-// function my_custom_nav_menu_args( $args ) {
-//     $args['walker'] = new Walker_Nav_Menu_Submenu();
-//     return $args;
-// }
-
-
 if (class_exists('WooCommerce')) {
     require_once (get_template_directory() . '/woocommers.php');
 }
 
-// Функция замены текста в кнопках "Добавить в корзину"
-
-// add_filter('add_to_cart_text', 'woo_custom_product_add_to_cart_text');            // < 2.1
-// add_filter('woocommerce_product_add_to_cart_text', 'woo_custom_product_add_to_cart_text');  // 2.1 +
-
-// function woo_custom_product_add_to_cart_text()
-// {
-
-//     return __('В корзину', 'woocommerce');
-// }
 
 // // Замена текста 
-// add_filter('gettext', 'translate_text');
-// add_filter('ngettext', 'translate_text');
+add_filter('gettext', 'translate_text');
+add_filter('ngettext', 'translate_text');
 
-// function translate_text($translated)
-// {
-//     $translated = str_ireplace('Подытог', 'Сумма', $translated);
-//     return $translated;
-// }
+
+function translate_text($translated)
+{
+    $translated = str_ireplace('Похожие товары', 'С этим покупают', $translated);
+    return $translated;
+}
 
 ?>

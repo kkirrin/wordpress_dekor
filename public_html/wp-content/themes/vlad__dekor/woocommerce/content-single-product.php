@@ -19,6 +19,9 @@ defined('ABSPATH') || exit;
 
 global $product;
 
+$product_title = $product -> get_title();
+
+
 /**
  * Hook: woocommerce_before_single_product.
  *
@@ -31,9 +34,8 @@ if (post_password_required()) {
 	return;
 }
 ?>
-<div class="container" style="padding-top: 150px;">
+<div class="container">
 	<div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
-
 		<?php
 		/**
 		 * Hook: woocommerce_before_single_product_summary.
@@ -45,6 +47,7 @@ if (post_password_required()) {
 		?>
 
 		<div class="summary entry-summary">
+			<?php echo '<h1 class="title__catalog"> '. $product_title . ' </h1>'?>
 			<?php
 			/**
 			 * Hook: woocommerce_single_product_summary.

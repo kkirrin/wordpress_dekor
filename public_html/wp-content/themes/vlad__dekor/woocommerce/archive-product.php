@@ -32,76 +32,52 @@ do_action('woocommerce_before_main_content');
 
 
 <div class="container">
-	<h2 class="text-bg-black text-2xl esm:text-2xl sm:text-3xl md:text-5xl py-4 esm:py-4 sm:py-4 md:py-5 font-extrabold"> Каталог</h2> 
 	<header class="woocommerce-products-header">
-		<?php if (apply_filters('woocommerce_show_page_title', true)): ?>
-			<h1 class="woocommerce-products-header__title page-title">
+	<?php if (apply_filters('woocommerce_show_page_title', true)): ?>
+			<h1 class="catalog-title">
 				<?php woocommerce_page_title(); ?>
 			</h1>
-		<?php endif; ?>
+	<?php endif; ?>
 
-		<?php
-		/**
-		 * Hook: woocommerce_archive_description.
-		 *
-		 * @hooked woocommerce_taxonomy_archive_description - 10
-		 * @hooked woocommerce_product_archive_description - 10
-		 */
+	<?php
+	/**
+	 * Hook: woocommerce_archive_description.
+	 *
+	 * @hooked woocommerce_taxonomy_archive_description - 10
+	 * @hooked woocommerce_product_archive_description - 10
+	 */
 	do_action('woocommerce_archive_description');
-		?>
-	</header>
+	?>
+</header>
 	<div class="flex">
 		<!-- Тут меню будет -->
 		<aside class="w-full esm:w-full sm:w-full md:w-1/6 hidden esm:hidden sm:hover: md:block mr-5 h-screen bg-gray-200 ">
 				<div>
-					<nav class="catalog-menu">
-						<?php wp_nav_menu([
-							'theme_location' => 'category',
-							'container' => '',
-							'menu_class' => '',
-							'menu_id' => 'sidebar-category'
-							]);
-						?>
-					</nav>
-					
-					<div class="filters-row">
-						<?php echo do_shortcode('[wpf-filters id=4]') ?>
-					</div>
-					
-					<div class="filters-row">
-						<?php echo do_shortcode('[wpf-filters id=6]') ?>
-					</div>
-					
-					<div class="filters-row">
-						<?php echo do_shortcode('[wpf-filters id=7]') ?>
-					</div>
+					<ul>
+
+						<div class="filters-row first-filters">
+							<?php echo do_shortcode('[wpf-filters id=5]') ?>
+						</div>
+						
+						<div class="filters-row">
+							<?php echo do_shortcode('[wpf-filters id=4]') ?>
+						</div>
+						
+						<div class="filters-row">
+							<?php echo do_shortcode('[wpf-filters id=6]') ?>
+						</div>
+						
+						<div class="filters-row">
+							<?php echo do_shortcode('[wpf-filters id=8]') ?>
+						</div>
+					</ul>
 				</div>
 		</aside>
 		<!-- Кончилось -->
 
 
 		<div class="w-full esm:full sm:w-full md:w-3/4 relative catalog">
-			<div class="flex justify-between pb-10 ">
-				<button
-					class="text-bg-black font-bold btn_menu_filter block esm:block sm:block md:hidden">Показать
-					меню
-				</button>
 
-
-				<div class="hidden sidebar_menu">
-					<nav class="catalog-menu">
-						<?php wp_nav_menu([
-							'theme_location' => 'category',
-							'container' => '',
-							'menu_class' => '',
-							'menu_id' => 'sidebar-category'
-							]);
-						?>
-					</nav>
-				</div>
-
-
-			</div>
 				
 			<!-- Начались продукты -->
 				<div class="wow__filter__custom">
@@ -112,6 +88,32 @@ do_action('woocommerce_before_main_content');
 					<div class="filters-row">
 						<?php echo do_shortcode('[wpf-filters id=2]') ?>
 					</div>
+					
+				</div>
+
+				<div>
+					<button class="filter-button">
+						<span>Фильтр</span>
+					</button>
+
+					<ul class="side-menu">
+
+						<div class="filters-row">
+							<?php echo do_shortcode('[wpf-filters id=5]') ?>
+						</div>
+						
+						<div class="filters-row">
+							<?php echo do_shortcode('[wpf-filters id=4]') ?>
+						</div>
+						
+						<div class="filters-row">
+							<?php echo do_shortcode('[wpf-filters id=6]') ?>
+						</div>
+						
+						<div class="filters-row">
+							<?php echo do_shortcode('[wpf-filters id=8]') ?>
+						</div>
+					</ul>
 				</div>
 				
 				<div class="catalog__items">
@@ -176,6 +178,7 @@ do_action('woocommerce_before_main_content');
 					do_action('woocommerce_sidebar');
 				?>
 				</div>
+				
 			
 				
 	</div>

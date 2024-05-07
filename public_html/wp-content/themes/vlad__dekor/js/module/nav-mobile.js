@@ -27,5 +27,12 @@ export const initNavMobile = () => {
             body.classList.toggle('lock')
         });
     });
+
+    const filterButton = document.querySelector('.filter-button');
+
+    filterButton.addEventListener('click', () => {
+      filterButton.classList.toggle('is-active');
+      filterButton.nextElementSibling.classList.toggle('is-active');
+    });
     
 }

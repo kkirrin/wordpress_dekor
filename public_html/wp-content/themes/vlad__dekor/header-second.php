@@ -169,40 +169,15 @@
                 <div class="section__menu">
                     <div class="menu overflow-hidden ">
                         <ul class="flex flex-col text-black">
-                            <li class="sub-menu px-4">
-                                <a class="flex gap-3 items-center p-2 bg-n">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/img/menu__img/cat_1.svg" alt="" class="bg-red transform transition-all hover:bg-persik p-2 rounded-md">
-                                    <span>Упаковочный материал</span>
-                                </a>
-                                <ul class="sub-menu">
-                                        <li>
-                                            <img src="<?php echo get_template_directory_uri(); ?>/src/img/menu__products/product_1.png" alt="">
-                                            <span>Коробки шляпные</span>
-                                        </li>
-                                        <li>
-                                            <img src="<?php echo get_template_directory_uri(); ?>/src/img/menu__products/product_2.png" alt="">
-                                            Коробки шляпные
-                                        </li>
-                                        <li>
-                                            <img src="<?php echo get_template_directory_uri(); ?>/src/img/menu__products/product_3.png" alt="">
-                                            Коробки шляпные
-                                        </li>
-                                        <li>
-                                            <img src="<?php echo get_template_directory_uri(); ?>/src/img/menu__products/product_4.png" alt="">
-                                            Коробки шляпные
-                                        </li>
-                                        <li>
-                                            <img src="<?php echo get_template_directory_uri(); ?>/src/img/menu__products/product_4.png" alt="">
-                                            Коробки шляпные
-                                        </li>
-                                        <li>
-                                            <img src="<?php echo get_template_directory_uri(); ?>/src/img/menu__products/product_4.png" alt="">
-                                            Коробки шляпные
-                                        </li>
-                                </ul>
-                            </li>
-                        </ul>   
-                        <div class="verictical__line"></div>
+                            <?php wp_nav_menu([
+                                'theme_location' => 'category',
+                                'container' => '',
+                                'menu_class' => '',
+                                'menu_id' => 'header__category'
+                                ]);
+                            ?>
+                        </ul> 
+                        <div class="verictical__line"></div>    
                     </div>
                 </div>
             </div>

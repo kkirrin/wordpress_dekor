@@ -50,4 +50,6 @@ export const initNav = () => {
             item.classList.remove('active');
         });
     });
+
+   
 }
