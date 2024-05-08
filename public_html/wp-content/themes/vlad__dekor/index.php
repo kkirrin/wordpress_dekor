@@ -153,147 +153,80 @@
 
                 <div class="new-items w-0 min-w-[100%] overflow-hidden">
                     <div class="swiper-wrapper">
-                        <?php
-                            $args = array(
+                    <?php
+                        $args = array(
+                            'post_type' => 'product',
+                            'posts_per_page' => -1,
+                            'product_cat' => 'новинка', // Замените 'news' на слаг вашей категории
+                        );
 
-                                'post_type' => 'product',
-                                'posts_per_page' => -1,
-                                'product_cat' => 'новинка',
-                            );
+                        $loop = new WP_Query($args);
 
-                            $query = new WP_Query($args);
+                        if ($loop->have_posts()) {
+                            while ($loop->have_posts()):
+                                $loop->the_post();
+                                global $product;
+                                $product_id = get_the_ID();
 
-                            if ($query->have_posts()) {
+                                $attr = $product->get_attributes(); // Получаем весь массив с атрибутами товаров
+                        
+                                $array = array(); // Создаем пустой массив
+                                foreach ($attr as $key => $value) {
+                                    $array[$key] = (($value->get_terms())[0]);
+                                }
 
-                                while ($query->have_posts()) {
-                                    $query->the_post();
+                                echo '<li class="relative swiper-slide new-slide card h-auto relative card product type-product post-46 status-publish first instock product_cat-new has-post-thumbnail shipping-taxable purchasable product-type-simple woocommerce">';
 
-                                    $terms = get_the_terms($post->ID, 'product_cat');
+                                echo '<div class="product-sticker-wrapper">';
+                                if (isset($array['pa_bez-glyutena'])) {
+                                    $bezglyutena = $array['pa_bez-glyutena']->name;
+                                    echo '<span class="product-sticker bg-yellow">';
+                                    echo $bezglyutena;
+                                    echo '</span>';
+                                }
 
-                                    $product = wc_get_product(get_the_ID());
-                                    
-                                    
-                                    $product_name = $product->get_name();
-                                    $product_id = get_the_ID();
-                                    $product_sku = $product->get_sku();
-                                    $product_image = wp_get_attachment_url($product->get_image_id());
-                                    $product_gallery = $product->get_gallery_image_ids();
-                                    $product_price = $product->get_price();
-                                    $product_variations = $product->get_available_variations();
+                                if (isset($array['pa_vegan'])) {
+                                    $vegan = $array['pa_vegan']->name;
+                                    echo '<span class="product-sticker bg-light-green">';
+                                    echo $vegan;
+                                    echo '</span>';
+                                }
 
-                                                             
-                                    $id = $product->get_id();
-                                    $product_link = $product->get_permalink();
-                                    $product_color = $product->get_meta('color');
-                                    
-                                    
-                                    echo '      <div class="swiper-slide w-auto rounded-md overflow-hidden">';
-                                    echo '          <div class="relative new__card flex flex-col justify-between">';
-                                    echo '              <div class="slider-container__inner__inner">';
-                                    echo '                  <div class="slider overflow-hidden w-auto">';
-                                                                foreach ( $product_gallery as $product_slide ) {
-                                                                    $full_src = wp_get_attachment_image_src( $product_slide, 'full' );
-                                                                    echo ' <img  class="rounded-md object-fill" style="max-height: 350px; width: -webkit-fill-available;" src="'.$full_src[0] .'">'; 
-                                                                }
-                                    echo '                   </div>';
-                                    
-                                    echo '                  <button class="custom-bullet custom-bullet--prev z-100"></button>';
-                                    echo '                  <button class="custom-bullet custom-bullet--next z-100"></button>';
-                                    echo '               </div>';
-                                    echo '              <button class="absolute right-2 top-2 z-20">';
-                                    echo '                  <img src="' . esc_url(get_template_directory_uri()) . '/src/img/icons/favorite.svg">';
-                                    echo '              </button>';
-                                    echo '          </div>';
+                                echo '</div>';
 
-                                    echo '          <div class="flex flex-col gap-1 pt-3">';
-                                    echo '              <div class="flex gap-2">';
-                                    echo '                  <p class="font-base font-extrabold">'. $product_name .' </p>';
-                                    echo '                      <img src="' . esc_url(get_template_directory_uri()) . '/src/img/icons/arrow.svg" alt="">';
-                                    echo '               </div>';
 
-                                                        foreach ( $product_variations as $variation ) {                        
-                                                            echo '<p>'. $variation['variation_description'] .'</p>';
-                                                        }
+                                echo '<a class="rounded-img" href="' . get_permalink($loop->post->ID) . '" alt="' . $loop->post->post_title . '">';
+                                if (has_post_thumbnail($loop->post->ID)) {
+                                    echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog');
+                                } else {
+                                    echo '<img loading="lazy" src="' . get_template_directory_uri() . '/src/img/woocommerce-placeholder-300x300.png" alt="">';
+                                }
 
-                                    echo '              <p>'. $product_sku .'</p>';
-                                    echo '              <p class="pt-5">'. $product_color .'</p>';
+                                echo '<span class="card__attr mb-5">250 мл</span>';
+                                echo '<h3 class="card__title">' . esc_html($loop->post->post_title) . '</h3>';
+                                echo '</a>';
+                                echo '<div class="flex flex-wrap items-center gap-5 justify-between">';
+                                echo '<span class="card__price">' . wc_price($product->get_price()) . '</span>';
+                                echo '<div class="flex items-center gap-2 relative">';
 
-                                    if ($product->is_type('variable')) {
-                                        $attributes = $product->get_variation_attributes();
-                                        $available_variations = $product->get_available_variations();
-    
-                                        foreach ($attributes as $attribute_name => $options) {
-    
-                                            // Выводим радио-кнопки для каждого атрибута
-                                            echo '<div class="woocommerce-variation single_variation">';
-                                            echo '<fieldset>';
-                                            echo '<legend> Выберите ' . wc_attribute_label($attribute_name) . ' </legend>';
-    
-    
-                                            // Переменная для определения первой итерации цикла
-                                            $is_first_option = true;
-    
-                                            $unique_suffix = $product->get_id();
-    
-                                            echo '<div class="inputs-wrapper">';
-                                            foreach ($options as $option) {
-    
-                                                $checked = $is_first_option ? 'checked' : ''; 
-    
-                                                $option_slug = sanitize_title($option);
-    
-    
-                                                echo '<label class="' . $checked . ' ' . $attribute_name . '-label"
-                                                style="background-color: #' . esc_attr($option_slug) . ';"
-                                                >';
-                                                echo '<input class="' . $attribute_name . '-input" type="radio" name="attribute_' . sanitize_title($attribute_name) . '" 
-                                                        id="' . esc_attr($option_slug) . '" value="' . esc_attr($option) . '" ' . $checked . '>' .
-                                                    esc_html(apply_filters('woocommerce_variation_option_name', $option));
-                                                echo '</label>';
-    
-                                                $is_first_option = false;
-                                            }
-    
-                                            echo '</div>';
-                                            echo '</fieldset>';
-                                            echo '</div>';
-                                        }
-                                        // Добавляем скрытое поле, необходимое для вариативных товаров
-                                        echo '<input type="hidden" name="product_id" value="' . esc_attr($product->get_id()) . '" />';
-                                        echo '<input type="hidden" name="variation_id" class="variation_id" value="" />';
-                                    }
-                                    
-                                    echo '              <div class="inputs-wrapper flex gap-2 py-4">';
-                                    echo '                   <label class="" style=""></label>';
-                                    echo '                   <label class="" style=""></label>';
-                                    echo '                   <label class="" style=""></label>';
-                                    echo '              </div>';
-                                    echo '           </div>';
-                                    echo '          <div class="flex gap-2 justify-between items-center flex-wrap">
-                                                        <div class="flex gap-1 pt-3">
-                                                            <span class="font-extrabold">';
-                                                               foreach ( $product_variations as $variation ) {                        
-                                                                echo '<p>'. $variation['price_html'] .'</p>';
-                                                            }
-                                    echo'
-                                                        </div> 
-                                        
-                                                        <div class="flex gap-2 justify-center items-center order-1 md:-order-1">
-                                                            <div class="quantity buttons_added border border-gray rounded-md py-3 px-5">
-                                                                <input type="button" value="-" class="minus cursor-pointer">
-                                                                    <input type="number" id="quantity_65c1b90451f5a" class="input-text qty text" style="width: 60px;" name="quantity" value="1" aria-label="Количество товара" size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off">
-                                                                <input type="button" value="+" class="plus cursor-pointer">
-                                                        </div>';
+                                echo '<a href="?add-to-cart=' . $product_id . '" class="relative card__to-card button button product_type_simple add_to_cart_button ajax_add_to_cart" data-quantity="1" data-product_id="' . $product_id . '" data-product_sku="' . $product->get_sku() . '" aria-label="' . __('Добавить в корзину', 'domain') . '" rel="nofollow">В корзину</a>';
 
-                                                        echo '<a href="?add-to-cart=' . $product_id . '" class="bg-red p-3 rounded-md card__to-card button button product_type_simple add_to_cart_button ajax_add_to_cart" data-quantity="1" data-product_id="' . $product_id . '" data-product_sku="' . $product->get_sku() . '" aria-label="' . __('Добавить в корзину', 'domain') . '" rel="nofollow"> 
-                                                            <img src="' . esc_url(get_template_directory_uri()) . '/src/img/icons/cart__white.svg">
-                                                        </a>    
-                                                        </div
-                                                    </div>
-                                                </div>';     
-                                    echo '</div>';
-                                }};
-                            ?>
+                                echo '<div class="heart-img-wrapper">';
+                                echo do_shortcode('[ti_wishlists_addtowishlist]');
+                                echo '</div>';
+
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</li>';
+
+
+                            endwhile;
+                        } else {
+                            echo __('Товаров не найдено');
+                        }
+
+                        wp_reset_postdata();
+                        ?>
                     </div>
                 </div>
             </div>

@@ -3706,7 +3706,6 @@ ul.variations li.woo-variation-items-wrapper:nth-of-type(1) li {
   font-weight: 600;
 }
 
-
 /* Блоки в оформлении заказов */
 .container h1 {
   font-size: 40px;
@@ -3746,7 +3745,8 @@ ul.variations li.woo-variation-items-wrapper:nth-of-type(1) li {
 .woocommerce .col2-set .col-2,
 .woocommerce-page .col2-set .col-2 {
   width: 540px;
-  background-color: #f5f6f8;
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.08);
+  background: rgb(255, 255, 255);
   padding: 35px 40px 35px;
   border-radius: 20px;
   margin: 0px 0px 100px;
@@ -3842,8 +3842,8 @@ ul.variations li.woo-variation-items-wrapper:nth-of-type(1) li {
 
 #place_order {
   padding: 12px 37px 12px;
-  background-color: #1a9640;
-  border-radius: 30px;
+  background-color: #76212E;
+  border-radius: 10px;
   font-family: "Jost", sans-serif;
   font-weight: 500;
   font-size: 16px;
@@ -3905,8 +3905,13 @@ ul.variations li.woo-variation-items-wrapper:nth-of-type(1) li {
   border-radius: 10px;
 }
 
+.woocommerce-checkout #payment {
+  background: #f5f6f8 !important;
+}
+
+
 .woocommerce form .form-row input.input-text {
-  border-radius: 25px;
+  border-radius: 10px;
 }
 
 .woocommerce form .form-row textarea.input-text {
@@ -3969,7 +3974,7 @@ ul.variations li.woo-variation-items-wrapper:nth-of-type(1) li {
   align-items: center;
   gap: 10px;
   border: 1px solid #abb2be;
-  border-radius: 25px;
+  border-radius: 10px;
   padding: 12px 15px 12px;
   cursor: pointer;
   transition-property: border;
@@ -3978,7 +3983,7 @@ ul.variations li.woo-variation-items-wrapper:nth-of-type(1) li {
 
 .woocommerce ul#shipping_method input[type="radio"]+label:hover {
 
-  border: 1px solid #1a9640;
+  border: 1px solid #76212E;
 }
 
 .woocommerce ul#shipping_method input[type="radio"]+label .radio_icon {
@@ -4000,15 +4005,15 @@ ul.variations li.woo-variation-items-wrapper:nth-of-type(1) li {
 }
 
 .woocommerce ul#shipping_method input[type="radio"]:checked+label {
-  border: 1px solid #1a9640;
+  border: 1px solid #76212E;
 }
 
 .woocommerce ul#shipping_method input[type="radio"]:checked+label .radio_icon {
-  border: 1px solid #1a9640;
+  border: 1px solid #76212E;
 }
 
 .woocommerce ul#shipping_method input[type="radio"]:checked+label .icon_check {
-  background-color: #1a9640;
+  background-color: #76212E;
 }
 
 .woocommerce ul#shipping_method .radio_text {
@@ -4169,3 +4174,11 @@ ul.variations li.woo-variation-items-wrapper:nth-of-type(1) li {
   }
 }
 
+._tabs-block {
+  display: none;
+}
+
+._tabs-block._active {
+  display: block;
+  padding: 30px 0;
+}

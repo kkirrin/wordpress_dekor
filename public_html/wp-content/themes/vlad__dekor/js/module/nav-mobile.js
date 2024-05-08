@@ -29,10 +29,11 @@ export const initNavMobile = () => {
     });
 
     const filterButton = document.querySelector('.filter-button');
-
-    filterButton.addEventListener('click', () => {
-      filterButton.classList.toggle('is-active');
-      filterButton.nextElementSibling.classList.toggle('is-active');
-    });
+    if(filterButton) {
+        filterButton.addEventListener('click', () => {
+            filterButton.classList.toggle('is-active');
+            filterButton.nextElementSibling.classList.toggle('is-active');
+        });
+    }
     
 }

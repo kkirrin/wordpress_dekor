@@ -12,7 +12,7 @@ import { initSubMenu } from './module/sub-menu.js';
 import { initDropList } from './module/dropList.js';
 import { initScrollAnimation } from "./module/scroll-animation.js";
 import { initNavMobile } from "./module/nav-mobile.js";
-
+import { initTab } from "./module/tabs.js";
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -35,6 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
     initDropList();
     initScrollAnimation();
     initNavMobile();
+    initTab();
 
     if(window.innerWidth >= 769) {
         var image = document.querySelectorAll('.parallax__img__first');
