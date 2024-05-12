@@ -20,8 +20,8 @@ export const initSlider = () => {
                 pagination: {
                   clickable: true,
                   el: `swiper-pagination`,
-               }
-    
+               },breakpoints: { 480: { enabled: false, }
+              }
             });
         }
         const newItems = document.querySelector('.new-items');

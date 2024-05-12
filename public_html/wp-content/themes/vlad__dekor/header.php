@@ -176,6 +176,7 @@
                                 'menu_id' => 'header__category'
                                 ]);
                             ?>
+                           
                         </ul> 
                         <div class="verictical__line"></div>    
                     </div>
